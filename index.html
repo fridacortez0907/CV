@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frida Carolina Cortez Hernandez - Ingeniero Industrial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.3;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            font-size: 11px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2em;
+            font-weight: 300;
+            margin-bottom: 6px;
+            letter-spacing: 1.2px;
+        }
+
+        .title {
+            font-size: 1em;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.8em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-menu {
+            background: #34495e;
+            padding: 12px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 15px;
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-1px);
+        }
+
+        .main-content {
+            padding: 25px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-left: 3px solid #3498db;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(3px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .job-title {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+
+        .company {
+            font-size: 0.85em;
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .date {
+            font-size: 0.75em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #34495e;
+            line-height: 1.4;
+            font-size: 0.8em;
+        }
+
+        .description ul {
+            padding-left: 15px;
+        }
+
+        .description li {
+            margin-bottom: 4px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-top: 2px solid #3498db;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 0.85em;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 2px 0;
+            color: #34495e;
+            position: relative;
+            padding-left: 12px;
+            font-size: 0.75em;
+        }
+
+        .skill-list li::before {
+            content: '▸';
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .cert-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 0.8em;
+        }
+
+        .cert-details {
+            color: #7f8c8d;
+            font-size: 0.7em;
+            line-height: 1.3;
+        }
+
+        .project-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #9b59b6;
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 0.85em;
+        }
+
+        .project-details {
+            color: #34495e;
+            font-size: 0.75em;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 8px;
+                border-radius: 0;
+            }
+            
+            .header {
+                padding: 20px 12px;
+            }
+            
+            .name {
+                font-size: 1.6em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-items {
+                gap: 15px;
+            }
+            
+            .nav-item {
+                font-size: 0.7em;
+                padding: 6px 10px;
+            }
+            
+            .main-content {
+                padding: 20px 12px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                font-size: 10px;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .experience-item, .education-item {
+                break-inside: avoid;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Frida Carolina Cortez Hernandez</h1>
+                <p class="title">Ingeniero Industrial | Especialista en Optimización de Procesos</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>Celular: (55) 4494-4739</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>Correo: fridacortezh@outlook.es</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>Fecha de nacimiento: 09 de Julio, 2001</span>
+                    </div>
+                </div>
+                
+                <nav class="nav-menu">
+                    <div class="nav-items">
+                        <a href="#experiencia" class="nav-item">Experiencia</a>
+                        <a href="#formacion" class="nav-item">Formación</a>
+                        <a href="#proyecto" class="nav-item">Investigación</a>
+                        <a href="#competencias" class="nav-item">Competencias</a>
+                        <a href="#certificaciones" class="nav-item">Certificaciones</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section" id="experiencia">
+                <h2 class="section-title">Experiencia Profesional</h2>
+                
+                <div class="experience-item">
+                    <h3 class="job-title">Colaborador en Seguridad Industrial y Medio Ambiente</h3>
+                    <p class="company">Fábrica de Billetes - Banco de México</p>
+                    <p class="date">Febrero 2025 - Agosto 2025 | Servicio Social</p>
+                    <div class="description">
+                        <ul>
+                            <li>Participación integral en actividades administrativas, técnicas y normativas de seguridad industrial</li>
+                            <li>Supervisión del cumplimiento normativo mediante recorridos de seguridad en instalaciones</li>
+                            <li>Implementación de metodología 5S para análisis y organización de espacios de trabajo</li>
+                            <li>Diseño de guías visuales y señalización de riesgos en maquinaria y áreas de trabajo</li>
+                            <li>Análisis de hojas de datos de seguridad (HDS) para impresión de etiquetas de identificación de riesgo</li>
+                            <li>Gestión y seguimiento del mantenimiento de válvulas de seguridad con proveedores externos</li>
+                            <li>Apoyo en trabajos en alturas y mejora continua de áreas operativas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3 class="job-title">Representante Estudiantil</h3>
+                    <p class="company">H. Consejo Técnico Escolar - UPIICSA</p>
+                    <p class="date">Noviembre 2022 - Octubre 2023</p>
+                    <div class="description">
+                        <ul>
+                            <li>Gestión y toma de decisiones estratégicas en proyectos académicos representando a la comunidad estudiantil</li>
+                            <li>Colaboración en presentación, evaluación y mejora de políticas escolares</li>
+                            <li>Facilitación de comunicación efectiva entre estudiantes y autoridades escolares</li>
+                            <li>Establecimiento de acuerdos clave para mejora de procesos académicos y administrativos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3 class="job-title">Analista de Procesos Organizacionales</h3>
+                    <p class="company">CONDUSEF - Asesoría e Investigación y Desarrollo Orgánico Institucional</p>
+                    <p class="date">Junio 2018 - Diciembre 2018 | Servicio Social</p>
+                    <div class="description">
+                        <ul>
+                            <li>Análisis, planificación y optimización de estructuras y procesos de información financiera organizacional</li>
+                            <li>Verificación y control de procesos internos para asegurar cumplimiento normativo</li>
+                            <li>Generación de informes ejecutivos y revisión detallada de datos financieros</li>
+                            <li>Diseño e implementación de mejoras en procesos operativos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="formacion">
+                <h2 class="section-title">Formación Académica</h2>
+                
+                <div class="education-item">
+                    <h3 class="job-title">Ingeniería Industrial</h3>
+                    <p class="company">Unidad Profesional Interdisciplinaria de Ingeniería y Ciencias Sociales y Administrativas (UPIICSA)</p>
+                    <p class="date">2019 - En curso | Promedio: 9.04</p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="job-title">Técnico en Comercio Internacional</h3>
+                    <p class="company">Centro de Estudios Científicos y Tecnológicos No. 5 "Benito Juárez"</p>
+                    <p class="date">2016 - 2019 | Promedio: 9.0</p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="job-title">Educación Secundaria</h3>
+                    <p class="company">Colegio Helen Keller A.C</p>
+                    <p class="date">2013 - 2016 |
