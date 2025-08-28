@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frida Carolina Cortez Hernandez - Ingeniero Industrial</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -265,19 +266,16 @@
             font-size: 0.85em;
             line-height: 1.4;
         }
-                /* BOTÓN FLOTANTE AZUL */
-        <!-- Floating Action Button -->
-<div class="floating-action" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up text-xl"></i>
-</div>
+
+        /* BOTÓN FLOTANTE - CÍRCULO MISMO TAMAÑO */
         .floating-action {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: #3b82f6;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 60px;          /* Círculo mantiene 60px */
+            height: 60px;         /* Círculo mantiene 60px */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -286,6 +284,11 @@
             transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
             z-index: 1000;
+        }
+
+        /* FLECHA TAMAÑO 18px */
+        .floating-action i {
+            font-size: 18px;     /* Flecha de 18px */
         }
         .floating-action:hover {
             transform: scale(1.1);
@@ -373,8 +376,8 @@
                     <div class="nav-items">
                         <a href="#experiencia" class="nav-item">Experiencia</a>
                         <a href="#formacion" class="nav-item">Formación</a>
-                        <a href="#investigacion" class="nav-item">Investigación</a>
                         <a href="#certificaciones" class="nav-item">Certificaciones</a>
+                        <a href="#investigacion" class="nav-item">Investigación</a>
                         <a href="#competencias" class="nav-item">Competencias</a>
                     </div>
                 </nav>
@@ -525,7 +528,15 @@
                             <li>5S</li>   
                             <li>SMED</li> 
                             <li>Kaizen</li> 
-    <!-- JAVASCRIPT AL FINAL -->
+   </p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- BOTÓN FLOTANTE: CÍRCULO NORMAL, FLECHA 18px -->
+    <div class="floating-action" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
     <script>
         function scrollToTop() {
             window.scrollTo({
