@@ -265,7 +265,29 @@
             font-size: 0.85em;
             line-height: 1.4;
         }
-
+                /* BOTÓN FLOTANTE AZUL */
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3b82f6;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            z-index: 1000;
+        }
+        .floating-action:hover {
+            transform: scale(1.1);
+            background: #2563eb;
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+        }
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -348,8 +370,8 @@
                         <a href="#experiencia" class="nav-item">Experiencia</a>
                         <a href="#formacion" class="nav-item">Formación</a>
                         <a href="#investigacion" class="nav-item">Investigación</a>
-                        <a href="#competencias" class="nav-item">Competencias</a>
                         <a href="#certificaciones" class="nav-item">Certificaciones</a>
+                        <a href="#competencias" class="nav-item">Competencias</a>
                     </div>
                 </nav>
             </div>
@@ -477,6 +499,14 @@
                             <li>Java Básico</li>
                             <li>Dassault Systèmes DELMIA</li>
                             <li>Canva</li>
+                     <div class="skill-category">
+                        <h4>Habilidades</h4>
+                        <ul class="skill-list">
+                            <li>Pensamiento crítico</li>
+                            <li>Analítico</li>
+                            <li>Adaptabilidad</li>
+                            <li>Comunicación asertiva</li>
+                            <li>Aprendizaje continuo y actualización profesional</li>
                         </ul>
                     </div>
                     
@@ -491,3 +521,14 @@
                             <li>5S</li>   
                             <li>SMED</li> 
                             <li>Kaizen</li> 
+    <!-- JAVASCRIPT AL FINAL -->
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
